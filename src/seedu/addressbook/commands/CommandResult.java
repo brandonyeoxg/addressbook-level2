@@ -11,18 +11,18 @@ import java.util.Optional;
 public class CommandResult {
 
     /** The feedback message to be shown to the user. Contains a description of the execution result */
-    public final String feedbackToUser;
+    private final String feedbackToUser_;
 
     /** The list of persons that was produced by the command */
     private final List<? extends ReadOnlyPerson> relevantPersons;
 
     public CommandResult(String feedbackToUser) {
-        this.feedbackToUser = feedbackToUser;
+        this.feedbackToUser_ = feedbackToUser;
         relevantPersons = null;
     }
 
     public CommandResult(String feedbackToUser, List<? extends ReadOnlyPerson> relevantPersons) {
-        this.feedbackToUser = feedbackToUser;
+        this.feedbackToUser_ = feedbackToUser;
         this.relevantPersons = relevantPersons;
     }
 
@@ -32,5 +32,9 @@ public class CommandResult {
     public Optional<List<? extends ReadOnlyPerson>> getRelevantPersons() {
         return Optional.ofNullable(relevantPersons);
     }
+
+	public String getFeedbackToUser() {
+		return feedbackToUser_;
+	}
 
 }
