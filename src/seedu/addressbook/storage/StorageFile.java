@@ -43,7 +43,17 @@ public class StorageFile {
         }
     }
 
+    /**
+     * Signals that the storage file is missing
+     */
+    public static class StorageFileMissingException extends Exception {
+    	public StorageFileMissingException(String message) {
+    		super(message);
+    	}
+    }
+    
     private final JAXBContext jaxbContext;
+    private String storageFilePath = DEFAULT_STORAGE_FILEPATH;
 
     public final Path path;
 
@@ -65,6 +75,7 @@ public class StorageFile {
         }
 
         path = Paths.get(filePath);
+        storageFilePath = filePath;
         if (!isValidPath(path)) {
             throw new InvalidStorageFilePathException("Storage file should end with '.txt'");
         }
@@ -144,5 +155,17 @@ public class StorageFile {
     public String getPath() {
         return path.toString();
     }
+
+    /**
+     * Checks if the file storage exist, if it does not throw an exception.
+     * 
+     * @throws StorageFileMissingException if the storage file does not exist.
+     */
+	public void checkFileStorageExist() throws StorageFileMissingException {
+		File storageFile = new File(storageFilePath);
+		if (!storageFile.exists()) {
+			throw new StorageFileMissingException("Storage File is missing!");
+		}
+	}
 
 }
