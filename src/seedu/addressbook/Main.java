@@ -104,7 +104,7 @@ public class Main {
      */
     private CommandResult executeCommand(Command command)  {
         try {
-        	storage.checkFileStorageExist();
+            storage.checkFileStorageExist();
             command.setData(addressBook, lastShownList);
             CommandResult result = command.execute();
             storage.save(addressBook);
