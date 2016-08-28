@@ -44,7 +44,7 @@ public class StorageFile {
     }
 
     /**
-     * Signals that the storage file is missing
+     * Signals that the storage file is missing.
      */
     public static class StorageFileMissingException extends Exception {
     	public StorageFileMissingException(String message) {
@@ -157,7 +157,8 @@ public class StorageFile {
     }
 
     /**
-     * Checks if the file storage exist, if it does not throw an exception.
+     * Checks if the storage file defined by the user during the start exists 
+     * throws an exception if it is missing.
      * 
      * @throws StorageFileMissingException if the storage file does not exist.
      */
