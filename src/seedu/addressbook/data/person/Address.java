@@ -51,10 +51,10 @@ public class Address {
         Matcher matchingPattern = regexPattern.matcher(address);
         
         if (matchingPattern.find()){
-            String blockComponent = matchingPattern.group(0);
-            String streetComponent = matchingPattern.group(1);
-            String unitComponent = matchingPattern.group(2);
-            String postalCodeComponent = matchingPattern.group(3);
+            String blockComponent = matchingPattern.group(1).trim();
+            String streetComponent = matchingPattern.group(2).trim();
+            String unitComponent = matchingPattern.group(3).trim();
+            String postalCodeComponent = matchingPattern.group(4).trim();
             
             block = new Block(Integer.parseInt(blockComponent));
             street = new Street(streetComponent);

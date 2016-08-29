@@ -11,8 +11,7 @@ public class Unit implements AddressComponent<String> {
     }
     
     public String getValue() {
-        // TODO Auto-generated method stub
-        return null;
+        return name_;
     }
 
 }
