@@ -11,6 +11,7 @@ import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
  * Represents a Person's address in the address book.
+ * Address is in the form a/BLOCK, STREET, UNIT, POSTAL_CODE
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {
