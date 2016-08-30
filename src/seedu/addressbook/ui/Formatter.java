@@ -12,10 +12,10 @@ import java.util.List;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
 /**
- * Formatter to help format messages to be displayed
+ * Formatter to help format messages to be displayed.
  */
 public class Formatter {
-    /** A decorative prefix added to the beginning of lines printed by AddressBook */
+    /** A decorative prefix added to the beginning of lines printed by AddressBook. */
     private static final String LINE_PREFIX = "|| ";
 
     /** A platform independent line separator. */
@@ -23,7 +23,7 @@ public class Formatter {
 
     private static final String DIVIDER = "===================================================";
 
-    /** Format of indexed list item */
+    /** Format of indexed list item. */
     private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
 
     /** Offset required to convert between 1-indexing and 0-indexing.  */
@@ -130,7 +130,7 @@ public class Formatter {
     /**
      * Formats a string as a viewable indexed list item.
      *
-     * @param visibleIndex visible index for this listing
+     * @param visibleIndex visible index for this listing.
      */
     private static String getIndexedListItem(int visibleIndex, String listItem) {
         return String.format(MESSAGE_INDEXED_LIST_ITEM, visibleIndex, listItem);
