@@ -1,14 +1,10 @@
 package seedu.addressbook.ui;
 
-import static seedu.addressbook.common.Messages.*;
-
 import seedu.addressbook.commands.CommandResult;
-import seedu.addressbook.common.Utils;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -17,21 +13,6 @@ import java.util.Scanner;
  * Text UI of the application.
  */
 public class TextUi {
-
-    /** A decorative prefix added to the beginning of lines printed by AddressBook */
-    private static final String LINE_PREFIX = "|| ";
-
-    /** A platform independent line separator. */
-    private static final String LS = System.lineSeparator();
-
-    private static final String DIVIDER = "===================================================";
-
-    /** Format of indexed list item */
-    private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
-
-
-    /** Offset required to convert between 1-indexing and 0-indexing.  */
-    public static final int DISPLAYED_INDEX_OFFSET = 1;
 
     /** Format of a comment input line. Comment lines are silently consumed when reading user input. */
     private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
@@ -76,7 +57,7 @@ public class TextUi {
      * @return command (full line) entered by the user
      */
     public String getUserCommand() {
-        out.print(LINE_PREFIX + "Enter command: ");
+        out.print(Formatter.FORMATTED_ENTER_COMMAND_MESSAGE);
         String fullInputLine = in.nextLine();
 
         // silently consume all ignored lines
@@ -84,20 +65,30 @@ public class TextUi {
             fullInputLine = in.nextLine();
         }
 
-        showToUser("[Command entered:" + fullInputLine + "]");
+        showToUser(Formatter.formatCommandFeedback(fullInputLine));
         return fullInputLine;
     }
 
-
+    /**
+     * Shows welcome message to the user.
+     * 
+     * @param version Current version of the addressbook.
+     * @param storageFilePath Storage file path.
+     */
     public void showWelcomeMessage(String version, String storageFilePath) {
-        showToUser(Formatter.formatWelcomeMessage(version,storageFilePath));
+        showToUser(Formatter.formatWelcomeMessage(version, storageFilePath));
     }
 
+    /**
+     * Shows the goodbye message to the user.
+     */
     public void showGoodbyeMessage() {
         showToUser(Formatter.formatGoodbyeMessage());
     }
 
-
+    /**
+     * Shows the failed initialising message to the user.
+     */
     public void showInitFailedMessage() {
         showToUser(Formatter.formatInitFailedMessage());
     }
@@ -118,7 +109,7 @@ public class TextUi {
         if(resultPersons.isPresent()) {
             showPersonListView(resultPersons.get());
         }
-        showToUser(result.feedbackToUser, DIVIDER);
+        showToUser(Formatter.formatResultToUser(result.feedbackToUser));
     }
 
     /**
