@@ -15,12 +15,16 @@ import seedu.addressbook.data.exception.IllegalValueException;
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {
-
     public static final String EXAMPLE = "123, some street";
     
     private static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses must be in the format a/BLOCK, STREET, UNIT, POSTAL_CODE";
     private static final String ADDRESS_VALIDATION_REGEX = "([0-9]+), (.+), (.+), ([0-9]+)";
     private static final String ADDRESS_COMPONENT_SPACING = ", ";
+    
+    private static final int EXTRACT_COMPONENT_POSTALCODE = 4;
+    private static final int EXTRACT_COMPONENT_UNIT = 3;
+    private static final int EXTRACT_COMPONENT_STREET = 2;
+    private static final int EXTRACT_COMPONENT_BLOCK = 1;    
     
     private Block block;
     private Street street;
@@ -52,10 +56,10 @@ public class Address {
         Matcher matchingPattern = regexPattern.matcher(address);
         
         if (matchingPattern.find()){
-            String blockComponent = matchingPattern.group(1).trim();
-            String streetComponent = matchingPattern.group(2).trim();
-            String unitComponent = matchingPattern.group(3).trim();
-            String postalCodeComponent = matchingPattern.group(4).trim();
+            String blockComponent = matchingPattern.group(EXTRACT_COMPONENT_BLOCK).trim();
+            String streetComponent = matchingPattern.group(EXTRACT_COMPONENT_STREET).trim();
+            String unitComponent = matchingPattern.group(EXTRACT_COMPONENT_UNIT).trim();
+            String postalCodeComponent = matchingPattern.group(EXTRACT_COMPONENT_POSTALCODE).trim();
             
             block = new Block(Integer.parseInt(blockComponent));
             street = new Street(streetComponent);
