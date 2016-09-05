@@ -11,6 +11,7 @@ import seedu.addressbook.data.person.Name;
 public class NameTest {
     
     private static final String ORIGINAL_NAME = "John K Doe";
+    private static final String CASE_INSENSITIVE_NAME = "JoHn k DOe";
 
     @Test
     public void testIsExactName() throws IllegalValueException {
@@ -25,5 +26,13 @@ public class NameTest {
         Name other = null;
         
         assertFalse(name.isSimilar(other));
+    }
+    
+    @Test
+    public void testIsCaseInsensitive() throws IllegalValueException {
+        Name name = new Name(ORIGINAL_NAME);
+        Name other = new Name(CASE_INSENSITIVE_NAME);
+        
+        assertTrue(name.isSimilar(other));
     }
 }
