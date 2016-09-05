@@ -70,6 +70,9 @@ public class Name {
          if (other == null) {
              return false;
          }
+         if ( this.toString().equalsIgnoreCase(other.toString()) == false) {
+             return false;
+         }
          return true;
      }    
 
