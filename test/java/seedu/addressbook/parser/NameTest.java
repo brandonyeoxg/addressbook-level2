@@ -16,7 +16,7 @@ public class NameTest {
     private static final String DIFFERENT_NAME = "Jane H Doe";
     private static final String DIFFERENT_ORDER_NAME = "Doe John K";
     private static final String SUBSET_NAME = "John Doe";
-    
+    private static final String SUPERSET_NAME = "John K Doe II";
     @Before
     public void setup() throws IllegalValueException {
         name = new Name(ORIGINAL_NAME);
@@ -54,7 +54,13 @@ public class NameTest {
     
     @Test
     public void testIsNameSupersetOfOther() throws IllegalValueException {
-        Name other= new Name(SUBSET_NAME);
+        Name other = new Name(SUBSET_NAME);
+        assertTrue(name.isSimilar(other));
+    }
+    
+    @Test
+    public void testIsNameSubsetOfOther() throws IllegalValueException {
+        Name other = new Name(SUPERSET_NAME); 
         assertTrue(name.isSimilar(other));
     }
 }

@@ -77,7 +77,8 @@ public class Name {
          List<String> smallCaseNameTokens = Arrays.asList(smallCaseName.split(NAME_SPLIT_DELIMITER));
          List<String> smallCaseOtherTokens = Arrays.asList(smallCaseOther.split(NAME_SPLIT_DELIMITER));
          
-         return smallCaseNameTokens.containsAll(smallCaseOtherTokens);
+         return smallCaseNameTokens.containsAll(smallCaseOtherTokens) || 
+                 smallCaseOtherTokens.containsAll(smallCaseNameTokens);
      }    
 
 }
