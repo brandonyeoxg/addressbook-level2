@@ -67,7 +67,7 @@ public class Name {
      * They differ by case, order and are subset/superset of each other.
      */
      public boolean isSimilar(Name other) {
-         return false;
+         return true;
      }    
 
 }
