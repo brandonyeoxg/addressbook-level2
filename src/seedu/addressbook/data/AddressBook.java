@@ -25,7 +25,6 @@ public class AddressBook {
 
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
-    private ArrayList<Tagging> allTaggings;
 
     /**
      * Creates an empty address book.
@@ -69,7 +68,6 @@ public class AddressBook {
         final Set<Tag> commonTagReferences = new HashSet<>();
         for (Tag tag : personTags) {
             commonTagReferences.add(masterTagObjects.get(tag));
-            allTaggings.add(new Tagging(person, tag, TagType.ADD));
         }
         person.setTags(new UniqueTagList(commonTagReferences));
     }
