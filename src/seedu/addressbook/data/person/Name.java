@@ -74,13 +74,10 @@ public class Name {
          String smallCaseName = this.toString().toLowerCase();
          String smallCaseOther = other.toString().toLowerCase();
          
-         String[] smallCaseNameTokens = smallCaseName.split(NAME_SPLIT_DELIMITER);
-         String[] smallCaseOtherTokens = smallCaseOther.split(NAME_SPLIT_DELIMITER);
+         List<String> smallCaseNameTokens = Arrays.asList(smallCaseName.split(NAME_SPLIT_DELIMITER));
+         List<String> smallCaseOtherTokens = Arrays.asList(smallCaseOther.split(NAME_SPLIT_DELIMITER));
          
-         Arrays.sort(smallCaseNameTokens);
-         Arrays.sort(smallCaseOtherTokens);
-         
-         return Arrays.equals(smallCaseNameTokens, smallCaseOtherTokens);
+         return smallCaseNameTokens.containsAll(smallCaseOtherTokens);
      }    
 
 }

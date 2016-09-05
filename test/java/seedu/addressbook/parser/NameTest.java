@@ -15,6 +15,7 @@ public class NameTest {
     private static final String CASE_INSENSITIVE_NAME = "JoHn k DOe";
     private static final String DIFFERENT_NAME = "Jane H Doe";
     private static final String DIFFERENT_ORDER_NAME = "Doe John K";
+    private static final String SUBSET_NAME = "John Doe";
     
     @Before
     public void setup() throws IllegalValueException {
@@ -48,6 +49,12 @@ public class NameTest {
     @Test
     public void testIsDifferentOrder() throws IllegalValueException {
         Name other = new Name(DIFFERENT_ORDER_NAME);
+        assertTrue(name.isSimilar(other));
+    }
+    
+    @Test
+    public void testIsNameSupersetOfOther() throws IllegalValueException {
+        Name other= new Name(SUBSET_NAME);
         assertTrue(name.isSimilar(other));
     }
 }
