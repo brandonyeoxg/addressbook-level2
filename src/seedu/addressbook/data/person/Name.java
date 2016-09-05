@@ -11,6 +11,7 @@ import java.util.List;
  */
 public class Name {
 
+    private static final String NAME_SPLIT_DELIMITER = " ";
     public static final String EXAMPLE = "John Doe";
     public static final String MESSAGE_NAME_CONSTRAINTS = "Person names should be spaces or alphabetic characters";
     public static final String NAME_VALIDATION_REGEX = "[\\p{Alpha} ]+";
@@ -70,10 +71,16 @@ public class Name {
          if (other == null) {
              return false;
          }
-         if ( this.toString().equalsIgnoreCase(other.toString()) == false) {
-             return false;
-         }
-         return true;
+         String smallCaseName = this.toString().toLowerCase();
+         String smallCaseOther = other.toString().toLowerCase();
+         
+         String[] smallCaseNameTokens = smallCaseName.split(NAME_SPLIT_DELIMITER);
+         String[] smallCaseOtherTokens = smallCaseOther.split(NAME_SPLIT_DELIMITER);
+         
+         Arrays.sort(smallCaseNameTokens);
+         Arrays.sort(smallCaseOtherTokens);
+         
+         return Arrays.equals(smallCaseNameTokens, smallCaseOtherTokens);
      }    
 
 }
