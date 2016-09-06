@@ -3,8 +3,8 @@ package seedu.addressbook.data.tag;
 import seedu.addressbook.data.person.Person;
 
 /**
- * Association class for Person and Tag
- * Contains the history of the tag that linked to the person and the tag type(Added or Deleted)
+ * Represents the association between Person and Tag.
+ * Contains the history of the tag that linked to the person and the tag type(Added or Deleted).
  */
 public class Tagging {
     private static final String TAG_DELETE_SYMBOL = "-";
