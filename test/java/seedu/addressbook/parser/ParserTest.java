@@ -18,6 +18,7 @@ import static seedu.addressbook.common.Messages.MESSAGE_INVALID_PERSON_DISPLAYED
 
 public class ParserTest {
 
+    private static final String NEWLINE = "\n";
     private Parser parser;
 
     @Before
@@ -251,6 +252,13 @@ public class ParserTest {
         final AddCommand result = parseAndAssertCommandType(input, AddCommand.class);
         assertEquals(result.getPerson(), testPerson);
     }
+    
+    @Test
+    public void print_printableObjects() {
+        Person p = generateTestPerson();
+        String result = getPrintableString(p.getName(), p.getPhone(), p.getEmail(), p.getAddress());
+        assertEquals(result, "Name: John Doe\nPhone: 123456789\nEmail: valid@e.mail\nAddress: 123, some street");
+    }
 
     private static Person generateTestPerson() {
         try {
@@ -303,5 +311,19 @@ public class ParserTest {
         final Command result = parser.parseCommand(input);
         assertTrue(result.getClass().isAssignableFrom(expectedCommandClass));
         return (T) result;
+    }
+    
+    /**
+     * Returns a concatenated version of the printable strings of each object.
+     */
+    String getPrintableString(Printable... printables) {
+        String output = "";
+        for (Printable p : printables) {
+            if (output.isEmpty() == false) {
+                output += NEWLINE;
+            }
+            output += p.getPrintableString();
+        }
+        return output;
     }
 }
